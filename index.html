@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1 class="game-title" id="startButton">StartGame</h1>
+        <h1 id="countGameTime" class="game-counter"></h1>
+        <div id="gamePlayGround" class="game-playground-wrapper">
+            <div id="position0" class="gameButtons">P</div>
+            <div id="position1" class="gameButtons">O</div>
+            <div id="position2" class="gameButtons">S</div>
+            <div id="position3" class="gameButtons">A</div>
+            <div id="position4" class="gameButtons">O</div>
+        </div>
+    </div>
+        <div id="finishModal" class="modal">
+            <div class="gameFinishModal">
+                <div class="modal-body">
+                    <h1>Bravo!!!</h1>
+                    <button id="playAgain" class="btn w-100">Igraj Ponovo</button>
+                </div>
+            </div>
+            <div class="modal-background"></div>
+        </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+html, body { height: 100%;}
+body {
+    font-family: Montserrat,"Helvetica","Arial",sans-serif;
+}
+*{
+    margin:0;
+}
+
+.container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.game-playground-wrapper{
+    display: flex;
+}
+
+.game-title{
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+.game-title.hide{
+    display:none;
+}
+
+.gameButtons{
+    background-color: red;
+    color:white;
+    height: 35px;
+    width: 35px;
+    display: grid;
+    border-radius: 6px;
+    place-items: center;
+    cursor: pointer;
+    font-weight: 700;
+}
+.gameButtons.mark-checked{
+    background-color: #d63031;
+}
+.gameButtons:hover{
+    background-color: #d63031;
+}
+.gameButtons.spread{
+    position: absolute;
+}
+
+.game-counter{
+    color:#d1caca;
+    display: none;
+}
+.game-counter.show{
+    position: absolute;
+    top:50%;
+    left:50%;
+    display: block;
+}
+
+#position0{
+    transition: 220ms ease-in-out;
+}
+#position1{
+    transition: 220ms ease-in-out;
+}
+#position2{
+    transition: 220ms ease-in-out;
+
+}
+#position3{
+    transition: 220ms ease-in-out;
+
+}
+#position4{
+    transition: 220ms ease-in-out;
+
+}
+.modal{
+    display: none;
+}
+
+.gameFinishModal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+    overflow: auto;
+
+}
+
+.modal-body{
+    padding: 20px 40px;
+    border-radius: 4%;
+    background: #fff;
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.75;
+    z-index: 900;
+}
+.btn{
+    border-radius: 4px;
+    background-color: red;
+    color:white;
+    border:none;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 10px 20px;
+
+}
+.w-100{
+    width: 100%;
+}
