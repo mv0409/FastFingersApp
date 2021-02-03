@@ -3,7 +3,7 @@ body {
     font-family: Montserrat,"Helvetica","Arial",sans-serif;
 }
 *{
-    margin:0;
+    margin: 0;
 }
 
 .container {
@@ -13,6 +13,7 @@ body {
     justify-content: center;
     height: 100%;
 }
+
 .game-playground-wrapper{
     display: flex;
 }
@@ -57,21 +58,19 @@ body {
     display: block;
 }
 
-#position0{
+#position-0{
     transition: 220ms ease-in-out;
 }
-#position1{
+#position-1{
     transition: 220ms ease-in-out;
 }
-#position2{
+#position-2{
     transition: 220ms ease-in-out;
-
 }
-#position3{
+#position-3{
     transition: 220ms ease-in-out;
-
 }
-#position4{
+#position-4{
     transition: 220ms ease-in-out;
 
 }
@@ -89,7 +88,6 @@ body {
     place-items: center;
     z-index: 1000;
     overflow: auto;
-
 }
 
 .modal-body{
