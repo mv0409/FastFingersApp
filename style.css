@@ -38,7 +38,7 @@ body {
     font-weight: 700;
 }
 .gameButtons.mark-checked{
-    background-color: #d63031;
+    background-color: green;
 }
 .gameButtons:hover{
     background-color: #d63031;
