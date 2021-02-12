@@ -11,28 +11,29 @@ document.getElementById("startButton").addEventListener("click", () => {
   addEventsToButtons(gameButtons)
   // init game
   newGame(gameButtons);
-});
-// recursive function
+})
+// core
 function newGame(gameButtons) {
   // init state
   initalState()
   // random position buttons
   schuffleButtons(gameButtons)
   // start timer
-  let timer = startTimer()
+  startTimer()
   // time runs out, refresh game or stop if won
-  Promise.resolve().then(
-    setTimeout(() => {
-      clearInterval(timer)
-      let { state, length } = validateState()
-      // if player won - stop timer, dont refresh
-      if((!state && !length) || (state && !length)) {
-        removeCheckedButtons(gameButtons)
-        newGame(gameButtons)
-      }
-    },deviceTimer())
-  )
+  gameFlow(gameButtons)
 }
+// refresh game
+function gameFlow(gameButtons) {
+    const time = setTimeout(() => {
+          removeCheckedButtons(gameButtons)
+          clearIntervalId()
+          clearTimeId()
+          newGame(gameButtons)
+    }, deviceTimer());
+    localStorage.setItem('gameTimeId', time)
+}
+
 // spread buttons to random positions
 function schuffleButtons(gameButtons) {
   let allowedWidht = [];
@@ -64,20 +65,24 @@ function schuffleButtons(gameButtons) {
     button.style.transform = `translate(${positions[i][0]}px,${positions[i][1]}px)`;
   })
 }
-// eventListener on buttons
+// eventListener on button click
 function addEventsToButtons(gameButtons) {
   gameButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      // add button value to state on click
+      // add letter to state
       addButtonToState(button)
       // validate state 
       let { state, length } = validateState()
-      // call new game
+      // call new game,clear all from prev state
       if(!state) {
         removeCheckedButtons(gameButtons)
+        clearIntervalId()
+        clearTimeId()
         newGame(gameButtons)
       }
       if(state && length) {
+        clearIntervalId()
+        clearTimeId()
         openModal(gameButtons)
       }
     })
@@ -89,7 +94,7 @@ function addButtonToState (_button) {
   _button.classList.add('mark-checked')
   updateState(button)
 }
-// open finished game modal
+// open finished game modal, congraz to player
 function openModal(gameButtons) {
     const finishModal = document.getElementById('finishModal')
     const playAgain = document.getElementById('playAgain')
@@ -100,25 +105,35 @@ function openModal(gameButtons) {
         finishModal.style.display = "none"
     })
 }
-// remove class from button
+// remove checked class from button
 function removeCheckedButtons(gameButtons) {
   gameButtons.forEach(button => button.classList.remove('mark-checked'))
 }
-// init state
+// init game state
 function initalState() {
   let state = []
   localStorage.setItem('gameState', JSON.stringify(state))
 }
-// get state
+// get game state
 function getState() {
   return JSON.parse(localStorage.getItem("gameState"));
 }
 
-// update state
+// update game state
 function updateState(button) {
   const userArray = getState()
   userArray.push(button);
   localStorage.setItem('gameState', JSON.stringify(userArray))
+}
+// clears interval id
+function clearIntervalId() {
+  const id = localStorage.getItem('gameIntervalId')
+  clearInterval(id)
+}
+// clear time id
+function clearTimeId() {
+  const id = localStorage.getItem('gameTimeId')
+  clearTimeout(id)
 }
 
 // returns boolean, compare lenght of 2 arr
@@ -126,8 +141,7 @@ function compareLenght(userArray, resultArray) {
   return userArray.length === resultArray.length ? true : false
 }
 
-
-// returns iterval id, show timer on screen and start executing every sec
+// init interval, sets interval id and increment timer by 1s
 function startTimer() {
   let countGameTime = document.getElementById('countGameTime')
   let timer = 1
@@ -138,7 +152,7 @@ function startTimer() {
     countGameTime.textContent = timer
     // increment timer by 1000ms
   }, 1000);
-  return interval
+  localStorage.setItem('gameIntervalId', interval)
 }
 
 // returns boolean, compare user clicked buttons and final result
