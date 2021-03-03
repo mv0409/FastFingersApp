@@ -208,7 +208,6 @@ class Game extends GameState{
   }
 
   removeCheckedButtons() {
-      console.log(this.gameButtons)
       this.gameButtons.forEach(button => button.classList.remove('mark-checked'))
   }
 }
